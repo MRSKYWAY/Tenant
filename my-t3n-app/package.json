@@ -1,0 +1,20 @@
+{
+  "name": "terminal3-adk-testnet-submission",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "quickstart": "TMPDIR=/tmp tsx quickstart.ts",
+    "register": "TMPDIR=/tmp tsx quickstart.ts --register",
+    "invoke": "TMPDIR=/tmp tsx invoke.ts"
+  },
+  "dependencies": {
+    "@terminal3/t3n-sdk": "latest",
+    "dotenv": "^17.4.2",
+    "tsx": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
+  }
+}
