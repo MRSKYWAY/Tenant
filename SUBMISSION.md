@@ -2,8 +2,7 @@
 
 ## Public Repository
 
-Repository: TODO: add public GitHub URL after push.
-
+Repository: https://github.com/MRSKYWAY/Tenant
 ## Completion Summary
 
 I completed the Terminal3 ADK onboarding flow against testnet:
@@ -24,9 +23,9 @@ I completed the Terminal3 ADK onboarding flow against testnet:
 Final successful booking output:
 
 ```json
-{
-  "id": "ord_0000B9K8J7WakFEQSmK8hM",
-  "pnr": "JY3ORZ",
+Booking result: {
+  "id": "ord_0000B9KxYx66kw2Zqc7W4W",
+  "pnr": "GJYKPM",
   "status": "confirmed"
 }
 ```
