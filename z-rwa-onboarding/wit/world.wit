@@ -1,0 +1,45 @@
+/// Confidential RWA onboarding demo.
+///
+/// The contract exposes a deterministic precheck and a PII-safe provider
+/// screening call. Raw identity fields are never accepted as function inputs:
+/// provider payloads use `{{profile.<field>}}` markers that Terminal3 resolves
+/// host-side from the delegated user's profile.
+package z:rwa-onboarding@0.1.0;
+
+world rwa-onboarding {
+    import host:tenant/tenant-context@1.0.0;
+    import host:interfaces/logging@2.1.0;
+    import host:interfaces/kv-store@2.1.0;
+    import host:interfaces/http-with-placeholders@2.1.0;
+
+    export contracts;
+}
+
+interface contracts {
+    record generic-input {
+        input:        option<list<u8>>,
+        user-profile: option<list<u8>>,
+        context:      option<list<u8>>,
+    }
+
+    /// Input JSON:
+    /// {
+    ///   asset_id, jurisdiction, investor_type, subscription_amount_usd,
+    ///   attestations?: { kyc_level_1?: bool, sanctions_clear?: bool, accredited?: bool }
+    /// }
+    ///
+    /// Output JSON:
+    /// { decision, reasons, required_next_actions, audit_ref }
+    check-eligibility: func(req: generic-input) -> result<list<u8>, string>;
+
+    /// Calls an approved external screening provider using profile
+    /// placeholders. Input contains provider URL and non-PII transaction
+    /// context only; the API key is read from `z:<tid>:secrets`.
+    ///
+    /// Input JSON:
+    /// { provider_url, asset_id, jurisdiction, investor_type, subscription_amount_usd }
+    ///
+    /// Output JSON:
+    /// { decision, provider_ref, audit_ref }
+    run-screening: func(req: generic-input) -> result<list<u8>, string>;
+}

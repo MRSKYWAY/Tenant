@@ -1,5 +1,7 @@
 my-t3n-app/node_modules/
 my-t3n-app/.env
 my-t3n-app/.t3n-run.json
+my-t3n-app/.t3n-rwa-run.json
 z-tenant-flight/target/
 z-tenant-flight/.git/
+z-rwa-onboarding/target/

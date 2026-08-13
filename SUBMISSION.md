@@ -19,6 +19,8 @@ I completed the Terminal3 ADK onboarding flow against testnet:
 10. Authorized the agent/user self-call for `api.duffel.com` egress.
 11. Invoked `search-offers` successfully and received five Duffel sandbox offers.
 12. Invoked `book-offer` successfully and received a confirmed booking.
+13. Added a bonus `z-rwa-onboarding` Terminal3 contract for confidential RWA investor onboarding.
+14. Built, registered, and invoked the bonus contract as a second use-case implementation.
 
 Final successful booking output:
 
@@ -132,6 +134,32 @@ The TEE contract would:
 
 Why Terminal3 fits: the agent can complete the last-mile onboarding task while the user keeps custody over sensitive personal data, and the issuer gets a verifiable decision trail without becoming the direct processor of every raw field.
 
+Implemented bonus artifact:
+
+- Contract: `z-rwa-onboarding/`
+- Docs: `z-rwa-onboarding/README.md`
+- Scripts: `npm run register-rwa` and `npm run invoke-rwa`
+- Verified with `cargo test`, `cargo build --target wasm32-wasip2 --release`, `npm run register-rwa`, and `npm run invoke-rwa`
+
+Successful bonus testnet registration:
+
+```text
+registered z:df9717fb65306d801326a6fc265257a1957a52d7:rwa-onboarding as contract id 670
+```
+
+Successful bonus invocation:
+
+```json
+Eligibility result: {
+  "decision": "eligible",
+  "reasons": [],
+  "required_next_actions": [],
+  "audit_ref": "rwa:fund_alpha:SG:v1"
+}
+```
+
+The proof of concept exposes `check-eligibility` for deterministic prechecks and `run-screening` for optional provider screening through `http-with-placeholders`. Raw profile values are represented only as Terminal3 placeholders in the provider request body; the agent receives decision, provider reference, and audit reference outputs.
+
 ## Commands Used
 
 ```bash
@@ -148,6 +176,14 @@ cd /home/skye/Tenant/z-tenant-flight
 rustup target add wasm32-wasip2
 cargo build --target wasm32-wasip2 --release
 cargo test --target x86_64-unknown-linux-gnu
+
+cd /home/skye/Tenant/z-rwa-onboarding
+cargo test
+cargo build --target wasm32-wasip2 --release
+
+cd /home/skye/Tenant/my-t3n-app
+npm run register-rwa
+npm run invoke-rwa
 ```
 
 ## Notes

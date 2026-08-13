@@ -7,7 +7,7 @@ This repo contains a fast, reproducible Terminal3 ADK onboarding run:
 - Reference TEE contract checkout/build instructions
 - Registration and invocation scripts
 - Screenshot and bug-report checklist
-- Initial use-case proposal for bonus judging
+- Bonus RWA onboarding use-case contract and invocation scripts
 
 ## Status
 
@@ -21,6 +21,7 @@ The Terminal3 ADK testnet flow has been completed end to end:
 - User profile fields added for placeholder resolution
 - `search-offers` returned live Duffel sandbox offers
 - `book-offer` returned a confirmed booking result
+- Bonus `z-rwa-onboarding` contract added, tested, registered, and invoked as a second Terminal3 ADK use case
 
 Runtime requires credentials from the claim page and sandbox provider keys:
 
@@ -68,6 +69,33 @@ npm run invoke
 ```
 
 Expected final output includes a `Search result` with Duffel offers and a `Booking result` with `{ id, pnr, status: "confirmed" }`.
+
+## Bonus Use Case Contract
+
+The bonus implementation lives in `z-rwa-onboarding/`. It demonstrates a confidential real-world asset onboarding agent that returns eligibility decisions without exposing raw user PII to the agent or issuer.
+
+```bash
+cd /home/skye/Tenant/z-rwa-onboarding
+cargo test
+cargo build --target wasm32-wasip2 --release
+
+cd /home/skye/Tenant/my-t3n-app
+npm run register-rwa
+npm run invoke-rwa
+```
+
+The default `invoke-rwa` path runs a deterministic `check-eligibility` call. If `RWA_PROVIDER_URL` and `RWA_PROVIDER_API_KEY` are set, it also runs `run-screening` with profile placeholders resolved inside Terminal3.
+
+Latest successful bonus run registered `z:<tid>:rwa-onboarding` as contract id `670` and returned:
+
+```json
+{
+  "decision": "eligible",
+  "reasons": [],
+  "required_next_actions": [],
+  "audit_ref": "rwa:fund_alpha:SG:v1"
+}
+```
 
 ## Submission Package
 

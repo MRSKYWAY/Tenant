@@ -9,7 +9,9 @@
     "invoke": "TMPDIR=/tmp tsx invoke.ts",
     "seed-secret": "TMPDIR=/tmp tsx seed-secret.ts",
     "repair-secret-acl": "TMPDIR=/tmp tsx repair-secret-acl.ts",
-    "upsert-user-profile": "TMPDIR=/tmp tsx upsert-user-profile.ts"
+    "upsert-user-profile": "TMPDIR=/tmp tsx upsert-user-profile.ts",
+    "register-rwa": "TMPDIR=/tmp tsx register-rwa.ts",
+    "invoke-rwa": "TMPDIR=/tmp tsx invoke-rwa.ts"
   },
   "dependencies": {
     "@terminal3/t3n-sdk": "latest",

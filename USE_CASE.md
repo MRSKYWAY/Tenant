@@ -26,6 +26,18 @@ This gives asset issuers a compliance-friendly decision trail while reducing cus
 - `issue-decision`: returns a compact pass / review / reject result.
 - `refresh-status`: re-checks expiring credentials without re-collecting the full profile.
 
+## Implemented Proof Of Concept
+
+This repo includes the first version of the use case in `z-rwa-onboarding/`:
+
+- Rust/WIT Terminal3 contract with `check-eligibility` and `run-screening`.
+- Deterministic eligibility decisions for supported jurisdictions, investor type, subscription amount, and attestation status.
+- `http-with-placeholders` provider call that injects profile fields host-side instead of accepting raw PII in contract inputs.
+- Tenant secret lookup for `rwa_provider_api_key` from `z:<tid>:secrets`.
+- Native tests covering eligible, review, reject, raw-PII rejection, and non-WASM screening behavior.
+- TypeScript helpers: `npm run register-rwa` and `npm run invoke-rwa`.
+- Testnet result: registered as `z:<tid>:rwa-onboarding` and returned an `eligible` decision for `fund_alpha` in `SG`.
+
 ## Data Boundary
 
 Raw PII remains in the Terminal3 data layer and is substituted into outbound provider calls inside the TEE. The agent and issuer receive only decision outputs.
