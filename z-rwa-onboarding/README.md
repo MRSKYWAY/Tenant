@@ -38,7 +38,14 @@ Terminal3 resolves those markers from the user's profile during the outbound pro
 ## Build And Test
 
 ```bash
-cd /home/skye/Tenant/z-rwa-onboarding
+cargo test
+cargo build --target wasm32-wasip2 --release
+```
+
+Or, from the repo root:
+
+```bash
+cd z-rwa-onboarding
 cargo test
 cargo build --target wasm32-wasip2 --release
 ```
@@ -46,15 +53,17 @@ cargo build --target wasm32-wasip2 --release
 The WASM artifact is:
 
 ```text
-/home/skye/Tenant/z-rwa-onboarding/target/wasm32-wasip2/release/z_rwa_onboarding.wasm
+z-rwa-onboarding/target/wasm32-wasip2/release/z_rwa_onboarding.wasm
 ```
 
 ## Register On Testnet
 
 The TypeScript helper in `my-t3n-app` registers this bonus contract under `z:<tid>:rwa-onboarding`.
 
+From the repo root:
+
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 npm run register-rwa
 ```
 
@@ -62,8 +71,10 @@ If `RWA_PROVIDER_API_KEY` is set, the script also stores it as `rwa_provider_api
 
 ## Invoke
 
+From the repo root:
+
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 npm run invoke-rwa
 ```
 

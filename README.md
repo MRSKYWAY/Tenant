@@ -33,7 +33,7 @@ Runtime requires credentials from the claim page and sandbox provider keys:
 ## Quick Run
 
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 cp .env.example .env
 # Fill .env locally. Do not commit it.
 npm install
@@ -43,7 +43,6 @@ npm run quickstart
 ## Contract Build
 
 ```bash
-cd /home/skye/Tenant
 git clone https://github.com/Terminal-3/z-tenant-flight.git
 cd z-tenant-flight
 rustup target add wasm32-wasip2
@@ -54,7 +53,7 @@ ls -lh target/wasm32-wasip2/release/*.wasm
 ## Registration
 
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 npm run register
 npm run repair-secret-acl
 npm run seed-secret
@@ -64,7 +63,7 @@ npm run upsert-user-profile
 ## Invoke Walkthrough
 
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 npm run invoke
 ```
 
@@ -75,11 +74,11 @@ Expected final output includes a `Search result` with Duffel offers and a `Booki
 The bonus implementation lives in `z-rwa-onboarding/`. It demonstrates a confidential real-world asset onboarding agent that returns eligibility decisions without exposing raw user PII to the agent or issuer.
 
 ```bash
-cd /home/skye/Tenant/z-rwa-onboarding
+cd z-rwa-onboarding
 cargo test
 cargo build --target wasm32-wasip2 --release
 
-cd /home/skye/Tenant/my-t3n-app
+cd ../my-t3n-app
 npm run register-rwa
 npm run invoke-rwa
 ```

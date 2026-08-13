@@ -4,7 +4,7 @@
 
 - Date: 2026-08-13
 - OS: WSL Ubuntu
-- Working directory: `/home/skye/Tenant`
+- Working directory: repo root
 - Runtime notes: `npm` was visible via Windows PATH, but `node` was not visible as a WSL binary.
 
 ## Bugs / Friction

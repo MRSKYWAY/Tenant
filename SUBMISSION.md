@@ -163,7 +163,7 @@ The proof of concept exposes `check-eligibility` for deterministic prechecks and
 ## Commands Used
 
 ```bash
-cd /home/skye/Tenant/my-t3n-app
+cd my-t3n-app
 npm install
 npm run quickstart
 npm run register
@@ -172,16 +172,16 @@ npm run seed-secret
 npm run upsert-user-profile
 npm run invoke
 
-cd /home/skye/Tenant/z-tenant-flight
+cd ../z-tenant-flight
 rustup target add wasm32-wasip2
 cargo build --target wasm32-wasip2 --release
 cargo test --target x86_64-unknown-linux-gnu
 
-cd /home/skye/Tenant/z-rwa-onboarding
+cd ../z-rwa-onboarding
 cargo test
 cargo build --target wasm32-wasip2 --release
 
-cd /home/skye/Tenant/my-t3n-app
+cd ../my-t3n-app
 npm run register-rwa
 npm run invoke-rwa
 ```
