@@ -69,7 +69,11 @@ if (process.argv.includes("--register")) {
     console.log("created z:<tid>:secrets map.");
   } catch (error) {
     if (String(error).toLowerCase().includes("map already exists")) {
-      console.log("z:<tid>:secrets map already exists; continuing.");
+      await tenant.maps.update("secrets", {
+        writers: { only: [contractId] },
+        readers: { only: [contractId] },
+      });
+      console.log("z:<tid>:secrets map already exists; updated ACL for current contract.");
     } else {
       throw error;
     }

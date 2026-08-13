@@ -11,11 +11,22 @@ This repo contains a fast, reproducible Terminal3 ADK onboarding run:
 
 ## Status
 
-The project is prepared for the Terminal3 ADK testnet flow. Runtime completion needs the SSO-created credentials from the claim page:
+The Terminal3 ADK testnet flow has been completed end to end:
+
+- Quickstart authenticated on `testnet`
+- Tenant client initialized
+- `z-tenant-flight` WASM component built
+- Contract registered as `z:<tid>:travel-contracts`
+- `secrets` map created and seeded with the Duffel sandbox API key
+- User profile fields added for placeholder resolution
+- `search-offers` returned live Duffel sandbox offers
+- `book-offer` returned a confirmed booking result
+
+Runtime requires credentials from the claim page and sandbox provider keys:
 
 - `T3N_API_KEY`: tenant private API key
-- `AGENT_KEY`: separate agent key for walkthrough invocation
-- `USER_KEY`: separate user/data-owner key for walkthrough authorization
+- `AGENT_KEY`: agent key for walkthrough invocation; for the self-call demo this can match `T3N_API_KEY`
+- `USER_KEY`: user/data-owner key for walkthrough authorization; for the self-call demo this can match `T3N_API_KEY`
 - `DUFFEL_API_KEY`: Duffel test API key for the reference flight contract secret
 
 ## Quick Run
@@ -44,6 +55,9 @@ ls -lh target/wasm32-wasip2/release/*.wasm
 ```bash
 cd /home/skye/Tenant/my-t3n-app
 npm run register
+npm run repair-secret-acl
+npm run seed-secret
+npm run upsert-user-profile
 ```
 
 ## Invoke Walkthrough
@@ -52,6 +66,8 @@ npm run register
 cd /home/skye/Tenant/my-t3n-app
 npm run invoke
 ```
+
+Expected final output includes a `Search result` with Duffel offers and a `Booking result` with `{ id, pnr, status: "confirmed" }`.
 
 ## Submission Package
 

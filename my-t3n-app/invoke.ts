@@ -41,7 +41,9 @@ console.log("Agent DID:", agentDid);
 const userKey = requiredEnv("USER_KEY");
 const userClient = await authenticatedClient(userKey);
 const userAddress = eth_get_address(userKey);
-await userClient.authenticate(createEthAuthInput(userAddress));
+const userAuth = await userClient.authenticate(createEthAuthInput(userAddress));
+const userDid = userAuth.value;
+console.log("User DID:", userDid);
 
 const userContractVersion = await getScriptVersion(getNodeUrl(), "tee:user/contracts");
 await userClient.execute({
@@ -70,6 +72,7 @@ const search = (await agentClient.executeAndDecode({
   script_name: TENANT_SCRIPT,
   script_version: scriptVersion,
   function_name: "search-offers",
+  pii_did: userDid,
   input: {
     origin: "LHR",
     destination: "JFK",
@@ -89,6 +92,7 @@ const booking = await agentClient.executeAndDecode({
   script_name: TENANT_SCRIPT,
   script_version: scriptVersion,
   function_name: "book-offer",
+  pii_did: userDid,
   input: {
     offer_id: offer.id,
     passenger_id: offer.passenger_ids[0],

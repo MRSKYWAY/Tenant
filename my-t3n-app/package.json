@@ -6,11 +6,15 @@
   "scripts": {
     "quickstart": "TMPDIR=/tmp tsx quickstart.ts",
     "register": "TMPDIR=/tmp tsx quickstart.ts --register",
-    "invoke": "TMPDIR=/tmp tsx invoke.ts"
+    "invoke": "TMPDIR=/tmp tsx invoke.ts",
+    "seed-secret": "TMPDIR=/tmp tsx seed-secret.ts",
+    "repair-secret-acl": "TMPDIR=/tmp tsx repair-secret-acl.ts",
+    "upsert-user-profile": "TMPDIR=/tmp tsx upsert-user-profile.ts"
   },
   "dependencies": {
     "@terminal3/t3n-sdk": "latest",
     "dotenv": "^17.4.2",
+    "ethers": "^6.17.0",
     "tsx": "latest"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 my-t3n-app/node_modules/
 my-t3n-app/.env
 my-t3n-app/.t3n-run.json
-z-tenant-flight/
+z-tenant-flight/target/
+z-tenant-flight/.git/
