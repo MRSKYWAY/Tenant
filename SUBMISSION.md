@@ -34,8 +34,6 @@ Booking result: {
 
 ## Screenshots
 
-Add screenshots below in the public Google Doc:
-
 - SSO claim page showing created ID / credits, with secrets redacted.
 - `npm run quickstart` output showing `Connected as: did:t3n:...`.
 - `TenantClient ready.` output.
